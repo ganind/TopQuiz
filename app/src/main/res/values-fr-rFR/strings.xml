@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TopQuiz</string>
+    <string name="welcome">Bienvenue, quel est votre prénom ?</string>
+    <string name="name">Saisir votre prénom</string>
+    <string name="btn_play_text">Démarrer</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TopQuiz</string>
+    <string name="name">Enter your name</string>
+    <string name="welcome">Welcome, what is your name?</string>
+    <string name="btn_play_text">Let\'s play!</string>
+</resources>
