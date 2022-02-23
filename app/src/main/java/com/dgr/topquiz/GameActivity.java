@@ -2,6 +2,8 @@ package com.dgr.topquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button mButtonChoix2;
     private Button mButtonChoix3;
     private Button mButtonChoix4;
+
+    // Attributs
+    private int mScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,14 +110,24 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         if(lChoixIndex == mCurrentQuestion.getIndexReponse()) {
             // Bonne réponse !
-            Toast.makeText(this, "Correct! :)", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.toast_message_success, Toast.LENGTH_SHORT).show();
+            mScore++;
         } else {
             // Mauvaise réponse !
-            Toast.makeText(this, "Wrong! :( Try again!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.toast_message_failed, Toast.LENGTH_SHORT).show();
         }
 
         if (!hasNextQuestion()) {
             // Plus de question
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.dialog_wellDone)
+                    .setMessage(getString(R.string.dialog_score, mScore))
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            }).create().show();
         }
     }
 

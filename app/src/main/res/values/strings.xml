@@ -3,4 +3,8 @@
     <string name="welcome">Bienvenue, quel est votre prénom ?</string>
     <string name="name">Saisir votre prénom</string>
     <string name="btn_play_text">Démarrer</string>
+    <string name="dialog_wellDone">Bien joué !</string>
+    <string name="dialog_score">Votre score est %1$d !</string>
+    <string name="toast_message_success">Bonne réponse :)</string>
+    <string name="toast_message_failed">Mauvaise réponse :(</string>
 </resources>

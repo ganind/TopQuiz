@@ -4,4 +4,8 @@
     <string name="name">Enter your name</string>
     <string name="welcome">Welcome, what is your name?</string>
     <string name="btn_play_text">Let\'s play!</string>
+    <string name="dialog_wellDone">Well done!</string>
+    <string name="dialog_score">Your score is %1$d!</string>
+    <string name="toast_message_success">Correct :)</string>
+    <string name="toast_message_failed">Wrong :(</string>
 </resources>
