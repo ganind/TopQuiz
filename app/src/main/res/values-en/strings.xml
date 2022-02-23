@@ -8,4 +8,6 @@
     <string name="dialog_score">Your score is %1$d!</string>
     <string name="toast_message_success">Correct :)</string>
     <string name="toast_message_failed">Wrong :(</string>
+    <string name="welcome_back">Welcome back, %1$s!</string>
+    <string name="last_score">Your last score is %1$d</string>
 </resources>

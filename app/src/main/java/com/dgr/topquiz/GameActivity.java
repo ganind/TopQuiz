@@ -1,10 +1,13 @@
 package com.dgr.topquiz;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -46,18 +49,28 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mButtonChoix3.setOnClickListener(this);
         mButtonChoix4.setOnClickListener(this);
 
-        // init les modèles
-        myQuestions = initQuestionBank();
+        /*
+        if (savedInstanceState != null) {
+            // Restaure l'état précédent
+            mScore = savedInstanceState.getInt(Constantes.BUNDLE_STATE_SCORE);
+            int index = savedInstanceState.getInt(Constantes.BUNDLE_STATE_INDEX);
+            myQuestions.setNextQuestionIndex(index-1);
+        } else {
+            // init les modèles
+            myQuestions = initQuestionBank();
+        }
+        */
 
         // recupère la question suivante
         hasNextQuestion();
+
+        Log.d("********TOPQUIZ********", "onCreate");
     }
 
     /**
      * Change le texte des Widgtes avec les infos de la question
      * @param question
      */
-
     private void displayQuestion(Question question) {
         // Set the text for the question text view and the four buttons
         mLibelleQuestion.setText(question.getQuestion());
@@ -125,6 +138,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    // réponse de l'activité avec extra(score), code(résultat: ok/failed/autre) et garc
+                    Intent intent = new Intent();
+                    intent.putExtra(Constantes.BUNDLE_EXTRA_SCORE, mScore);
+                    setResult(RESULT_OK, intent);
+                    // rendre la main à la main activity avec le résultat
                     finish();
                 }
             }).create().show();
@@ -132,8 +150,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * Renvoie true si une question
-     * @return
+     * Gère la récuperation de l'affichage de la question suivante
+     * @return true si une question est traitée, false sinon
      */
     private boolean hasNextQuestion() {
         mCurrentQuestion = myQuestions.getNextQuestion();
@@ -142,5 +160,44 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         displayQuestion(mCurrentQuestion);
         return true;
+    }
+
+    // gérer le changement d'orientation de l'appareil
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Enregistre les infos courantes
+        outState.putInt(Constantes.BUNDLE_STATE_SCORE, mScore);
+        outState.putInt(Constantes.BUNDLE_STATE_INDEX, myQuestions.getNextQuestionIndex());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("********TOPQUIZ********", "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("********TOPQUIZ********", "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("********TOPQUIZ********", "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("********TOPQUIZ********", "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("********TOPQUIZ********", "onDestroy");
     }
 }

@@ -26,4 +26,16 @@ public class QuestionBank {
         // compteur de questions
         return mQuestionList.get(mNextQuestionIndex++);
     }
+
+    /**
+     * renvoie l'index de la question courante
+     * @return index
+     */
+    public int getNextQuestionIndex() {
+        return mNextQuestionIndex;
+    }
+
+    public void setNextQuestionIndex(int nextQuestionIndex) {
+        mNextQuestionIndex = nextQuestionIndex;
+    }
 }
