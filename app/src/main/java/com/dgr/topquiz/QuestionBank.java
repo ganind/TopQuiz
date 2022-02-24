@@ -38,4 +38,8 @@ public class QuestionBank {
     public void setNextQuestionIndex(int nextQuestionIndex) {
         mNextQuestionIndex = nextQuestionIndex;
     }
+
+    public List<Question> getQuestionList() {
+        return mQuestionList;
+    }
 }

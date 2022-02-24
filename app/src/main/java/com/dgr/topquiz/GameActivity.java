@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dgr.topquiz.database.Database;
+
 import java.util.Arrays;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
@@ -49,17 +51,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mButtonChoix3.setOnClickListener(this);
         mButtonChoix4.setOnClickListener(this);
 
-        /*
         if (savedInstanceState != null) {
             // Restaure l'état précédent
             mScore = savedInstanceState.getInt(Constantes.BUNDLE_STATE_SCORE);
             int index = savedInstanceState.getInt(Constantes.BUNDLE_STATE_INDEX);
+            // Recupère notre QuestionBank de la DB
+            myQuestions = new Database(this).getQuestionBank();
             myQuestions.setNextQuestionIndex(index-1);
         } else {
             // init les modèles
             myQuestions = initQuestionBank();
         }
-        */
 
         // recupère la question suivante
         hasNextQuestion();
@@ -82,6 +84,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private QuestionBank initQuestionBank() {
         Question question1 = new Question(
+                1,
                 "Who is the creator of Android?",
                 Arrays.asList(
                         "Andy Rubin",
@@ -90,6 +93,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         "Paul Smith"),
                 0);
         Question question2 = new Question(
+                2,
                 "When did the first man land on the moon?",
                 Arrays.asList(
                         "1958",
@@ -98,6 +102,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         "1969"),
                 3);
         Question question3 = new Question(
+                3,
                 "What is the house number of The Simpsons?",
                 Arrays.asList(
                         "42",
@@ -169,6 +174,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // Enregistre les infos courantes
         outState.putInt(Constantes.BUNDLE_STATE_SCORE, mScore);
         outState.putInt(Constantes.BUNDLE_STATE_INDEX, myQuestions.getNextQuestionIndex());
+
+        new Database(this).insertQuestionBank(myQuestions);
     }
 
     @Override

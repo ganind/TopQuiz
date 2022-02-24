@@ -1,6 +1,6 @@
 package com.dgr.topquiz;
 
-final class Constantes {
+public final class Constantes {
 
     // Code d'appel de l'activité GameActivity
     public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
@@ -17,4 +17,6 @@ final class Constantes {
     public static final String BUNDLE_STATE_SCORE = "BUNDLE_STATE_SCORE";
 
     public static final String BUNDLE_STATE_INDEX = "BUNDLE_STATE_INDEX";
+
+    public static final String DATABASE_NAME = "TOPQUIZ";
 }
